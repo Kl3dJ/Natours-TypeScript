@@ -10,4 +10,37 @@ export class ToursService {
   async findAll() {
     return this.tourModel.find();
   }
+
+  async findById(id: string) {
+    const tour = await this.tourModel.findById(id);
+    if (!tour) {
+      throw new NotFoundException(`Cannot found a tour with this id: ${id}`);
+    }
+    return tour;
+  }
+
+  async create(createTourDto: any) {
+    const createdTour = new this.tourModel(createTourDto);
+    return createdTour.save();
+  }
+
+  async update(id: string, updateTourDto: any) {
+    const updatedTour = await this.tourModel.findByIdAndUpdate(
+      id,
+      updateTourDto,
+      { new: true },
+    );
+    if (!updatedTour) {
+      throw new NotFoundException(`Cannot find a tour with this id: ${id}`);
+    }
+    return updatedTour;
+  }
+
+  async remove(id: string) {
+    const deletedTour = await this.tourModel.findByIdAndDelete(id);
+    if (!deletedTour) {
+      throw new NotFoundException(`Cannot find a tour with this id: ${id}`);
+    }
+    return deletedTour;
+  }
 }

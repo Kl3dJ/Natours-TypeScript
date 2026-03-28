@@ -3,8 +3,6 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ToursController } from './tours/tours.controller';
-import { ToursService } from './tours/tours.service';
 import { ToursModule } from './tours/tours.module';
 import { Connection } from 'mongoose';
 
