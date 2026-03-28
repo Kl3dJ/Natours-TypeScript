@@ -10,7 +10,6 @@ import { Connection } from 'mongoose';
 
 @Module({
   imports: [
-    ToursModule,
     ConfigModule.forRoot({ isGlobal: true, envFilePath: 'config.env' }),
     MongooseModule.forRootAsync({
       inject: [ConfigService],
@@ -28,7 +27,7 @@ import { Connection } from 'mongoose';
           uri,
           onConnectionCreate: (connection: Connection) => {
             connection.on('connected', () =>
-              console.log('--------THIS SHIT IS WORKING DAMMIT!!!-------'),
+              console.log('--------Successfully connected-------'),
             );
 
             return connection;
@@ -36,8 +35,9 @@ import { Connection } from 'mongoose';
         };
       },
     }),
+    ToursModule,
   ],
-  controllers: [AppController, ToursController],
-  providers: [AppService, ToursService],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}
