@@ -11,7 +11,7 @@ import {
 import { UsersService } from './users.service';
 import { AuthService } from '../auth/auth.service';
 import { CreateUserDto } from './dto/create-user.dto';
-import { AuthDto } from '../auth/dtos/auth.dto';
+import { AuthDto } from '../auth/dto/auth.dto';
 import { Public } from '../auth/public.decorator';
 
 @Controller('users')

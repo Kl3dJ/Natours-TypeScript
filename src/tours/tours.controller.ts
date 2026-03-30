@@ -10,11 +10,13 @@ import {
 import { ToursService } from './tours.service';
 import { CreateTourDto } from './dto/create-tour.dto';
 import { UpdateTourDto } from './dto/update-tour.dto';
+import { Public } from '../auth/public.decorator';
 
 @Controller('tours')
 export class ToursController {
   constructor(private readonly tourService: ToursService) {}
 
+  @Public()
   @Get()
   async findAll() {
     const tours = await this.tourService.findAll();
@@ -25,6 +27,7 @@ export class ToursController {
     };
   }
 
+  @Public()
   @Get(':id')
   async findById(@Param('id') id: string) {
     const tour = await this.tourService.findById(id);
