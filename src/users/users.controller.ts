@@ -6,6 +6,7 @@ import {
   Delete,
   Param,
   Body,
+  Request,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { AuthService } from '../auth/auth.service';
@@ -69,8 +70,9 @@ export class UsersController {
     return this.usersService.updateUser(id, updateUserDto);
   }
 
-  @Delete('deleteMe/:id')
-  deleteMe(@Param('id') id: string) {
-    return this.usersService.deleteMe(id);
+  @Delete('deleteMe')
+  deleteMe(@Request() req: any) {
+    const userId = req.user.id;
+    return this.usersService.deleteMe(userId);
   }
 }

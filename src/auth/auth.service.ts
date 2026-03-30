@@ -164,7 +164,7 @@ export class AuthService {
   }
 
   async validateUser(userId: string) {
-    const user = await this.userModel.findById(userId);
+    const user = await this.userModel.findById(userId).select('+active');
 
     if (!user || !user.active) {
       return null;
