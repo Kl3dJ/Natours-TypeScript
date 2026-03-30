@@ -8,22 +8,11 @@ export class User {
   @Prop({ required: true, unique: true })
   email: string;
 
-  @Prop()
+  @Prop({ default: 'default.jpg' })
   photo: string;
 
-  @Prop({ required: true })
+  @Prop({ required: true, select: false })
   password: string;
-
-  @Prop({
-    required: true,
-    validate: {
-      validator: function (this: User, value: string) {
-        return value === this.password;
-      },
-      message: 'Passwords do not match',
-    },
-  })
-  passwordConfirm: string;
 
   @Prop({ enum: ['user', 'admin', 'guide', 'lead-guide'], default: 'user' })
   role: string;

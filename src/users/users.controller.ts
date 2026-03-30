@@ -41,4 +41,17 @@ export class UsersController {
   create(@Body() createUserDto: CreateUserDto) {
     return this.usersService.create(createUserDto);
   }
+
+  @Patch(':id')
+  updateUser(
+    @Param('id') id: string,
+    @Body() updateUserDto: Partial<CreateUserDto>,
+  ) {
+    return this.usersService.updateUser(id, updateUserDto);
+  }
+
+  @Delete('deleteMe/:id')
+  deleteMe(@Param('id') id: string) {
+    return this.usersService.deleteMe(id);
+  }
 }

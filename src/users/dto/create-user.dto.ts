@@ -4,6 +4,8 @@ import {
   MinLength,
   IsNotEmpty,
   IsEnum,
+  IsOptional,
+  ValidateBy,
 } from 'class-validator';
 
 export class CreateUserDto {
@@ -30,5 +32,6 @@ export class CreateUserDto {
   role: string;
 
   @IsString()
-  photo: string;
+  @IsOptional()
+  photo?: string;
 }
