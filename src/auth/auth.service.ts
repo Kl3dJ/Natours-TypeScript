@@ -6,9 +6,9 @@ import {
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UsersService } from '../users/users.service';
-import { AuthDto } from './dtos/auth.dto';
-import { ForgotPasswordDto } from './dtos/password-reset.dto';
-import { ResetPasswordDto } from './dtos/reset-password.dto';
+import { AuthDto } from './dto/auth.dto';
+import { ForgotPasswordDto } from './dto/password-reset.dto';
+import { ResetPasswordDto } from './dto/reset-password.dto';
 import * as bcrypt from 'bcrypt';
 import * as crypto from 'crypto';
 import { InjectModel } from '@nestjs/mongoose';
@@ -65,10 +65,17 @@ export class AuthService {
     }
 
     // Check for user and get password field
-    const user = await this.usersService.findByEmail(email);
+    const user = await this.userModel
+      .findOne({ email })
+      .select('+password +active');
 
     if (!user || !(await bcrypt.compare(password, user.password))) {
       throw new UnauthorizedException('Incorrect email or password');
+    }
+
+    // Check if user is active
+    if (!user.active) {
+      throw new UnauthorizedException('User account is inactive');
     }
 
     // Generate JWT token

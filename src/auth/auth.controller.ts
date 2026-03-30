@@ -1,8 +1,8 @@
 import { Controller, Post, Body, Patch, Param } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { AuthDto } from './dtos/auth.dto';
-import { ForgotPasswordDto } from './dtos/password-reset.dto';
-import { ResetPasswordDto } from './dtos/reset-password.dto';
+import { AuthDto } from './dto/auth.dto';
+import { ForgotPasswordDto } from './dto/password-reset.dto';
+import { ResetPasswordDto } from './dto/reset-password.dto';
 import { Public } from './public.decorator';
 
 @Controller('auth')
