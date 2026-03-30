@@ -6,13 +6,20 @@ import {
   Delete,
   Param,
   Body,
+  Request,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
+import { AuthService } from '../auth/auth.service';
 import { CreateUserDto } from './dto/create-user.dto';
+import { AuthDto } from '../auth/dtos/auth.dto';
+import { Public } from '../auth/public.decorator';
 
 @Controller('users')
 export class UsersController {
-  constructor(private usersService: UsersService) {}
+  constructor(
+    private usersService: UsersService,
+    private authService: AuthService,
+  ) {}
 
   @Get()
   async findAll() {
@@ -37,7 +44,20 @@ export class UsersController {
     };
   }
 
-  @Post()
+  @Public()
+  @Post('signup')
+  signup(@Body() authDto: AuthDto) {
+    return this.authService.signup(authDto);
+  }
+
+  @Public()
+  @Post('login')
+  login(@Body() authDto: AuthDto) {
+    return this.authService.login(authDto);
+  }
+
+  @Public()
+  @Post('createUser')
   create(@Body() createUserDto: CreateUserDto) {
     return this.usersService.create(createUserDto);
   }
@@ -50,8 +70,9 @@ export class UsersController {
     return this.usersService.updateUser(id, updateUserDto);
   }
 
-  @Delete('deleteMe/:id')
-  deleteMe(@Param('id') id: string) {
-    return this.usersService.deleteMe(id);
+  @Delete('deleteMe')
+  deleteMe(@Request() req: any) {
+    const userId = req.user.id;
+    return this.usersService.deleteMe(userId);
   }
 }

@@ -19,6 +19,12 @@ export class User {
 
   @Prop({ default: true, select: false })
   active: boolean;
+
+  @Prop({ select: false })
+  passwordResetToken?: string;
+
+  @Prop({ select: false })
+  passwordResetExpires?: Date;
 }
 
 export type UserDocument = User & Document;
