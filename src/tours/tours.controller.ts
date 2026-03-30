@@ -16,13 +16,22 @@ export class ToursController {
   constructor(private readonly tourService: ToursService) {}
 
   @Get()
-  findAll() {
-    return this.tourService.findAll();
+  async findAll() {
+    const tours = await this.tourService.findAll();
+    return {
+      status: 'success',
+      results: tours.length,
+      data: tours,
+    };
   }
 
   @Get(':id')
-  findById(@Param('id') id: string) {
-    return this.tourService.findById(id);
+  async findById(@Param('id') id: string) {
+    const tour = await this.tourService.findById(id);
+    return {
+      status: 'success',
+      data: tour,
+    };
   }
 
   @Post()

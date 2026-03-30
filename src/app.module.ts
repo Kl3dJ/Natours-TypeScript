@@ -5,6 +5,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ToursModule } from './tours/tours.module';
 import { Connection } from 'mongoose';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -34,6 +35,7 @@ import { Connection } from 'mongoose';
       },
     }),
     ToursModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
