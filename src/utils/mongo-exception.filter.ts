@@ -14,7 +14,7 @@ export class MongoExceptionFilter implements ExceptionFilter {
 
     if (exception.code === 11000) {
       const field = Object.keys(exception.keyValue)[0];
-      const value = exception;
+      const value = exception.keyValue[field];
       // Duplicate key error
       response.status(409).json({
         status: 'error',
