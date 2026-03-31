@@ -9,6 +9,7 @@ import { Connection } from 'mongoose';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { JwtAuthGuard } from './auth/jwt.guard';
+import { ReviewsModule } from './reviews/reviews.module';
 
 @Module({
   imports: [
@@ -40,6 +41,7 @@ import { JwtAuthGuard } from './auth/jwt.guard';
     ToursModule,
     UsersModule,
     AuthModule,
+    ReviewsModule,
   ],
   controllers: [AppController],
   providers: [
