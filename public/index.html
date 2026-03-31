@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Natours - Adventure Tours</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <a href="/" class="nav-logo">
+          <i class="fas fa-mountain"></i> Natours
+        </a>
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <a href="#tours" class="nav-link">Tours</a>
+          </li>
+          <li class="nav-item">
+            <a href="#guides" class="nav-link">Our Guides</a>
+          </li>
+          <li class="nav-item">
+            <a href="#contact" class="nav-link">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Discover Amazing Tours</h1>
+        <p>Experience unforgettable adventures across the globe</p>
+        <a href="#tours" class="btn btn-primary">Explore Tours</a>
+      </div>
+    </section>
+
+    <!-- Tours Section -->
+    <section id="tours" class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Popular Tours</h2>
+          <p>Choose from our collection of exciting adventure tours</p>
+        </div>
+
+        <div class="filters">
+          <button class="filter-btn filter-btn--active" data-filter="all">
+            All
+          </button>
+          <button class="filter-btn" data-filter="easy">Easy</button>
+          <button class="filter-btn" data-filter="medium">Medium</button>
+          <button class="filter-btn" data-filter="difficult">Difficult</button>
+        </div>
+
+        <div class="tours-grid" id="toursGrid">
+          <div class="loading">Loading tours...</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tour Detail Modal -->
+    <div id="tourModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="tour-detail" id="tourDetail">
+          <!-- Populated by JavaScript -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Guides Section -->
+    <section id="guides" class="section section--secondary">
+      <div class="container">
+        <div class="section-header">
+          <h2>Our Expert Guides</h2>
+          <p>Meet the passionate professionals guiding your adventures</p>
+        </div>
+
+        <div class="guides-grid" id="guidesGrid">
+          <div class="loading">Loading guides...</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Get In Touch</h2>
+          <p>Have questions? We'd love to hear from you</p>
+        </div>
+
+        <div class="contact-content">
+          <div class="contact-info">
+            <div class="info-block">
+              <i class="fas fa-phone"></i>
+              <h3>Phone</h3>
+              <p>+1 (555) 123-4567</p>
+            </div>
+            <div class="info-block">
+              <i class="fas fa-envelope"></i>
+              <h3>Email</h3>
+              <p>info@natours.io</p>
+            </div>
+            <div class="info-block">
+              <i class="fas fa-map-marker-alt"></i>
+              <h3>Location</h3>
+              <p>123 Adventure Lane, World</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <p>
+          &copy; 2024 Natours. All rights reserved. | Designed with
+          <i class="fas fa-heart"></i> for adventure seekers
+        </p>
+      </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+  </body>
+</html>
