@@ -1,5 +1,5 @@
 // Configuration
-const API_BASE = '/api'; // Adjust this to your API endpoint
+const API_BASE = '/api/v1'; // Updated to match NestJS global prefix
 
 // Sample data (will be replaced by API calls when backend is ready)
 const SAMPLE_TOURS = [
@@ -436,15 +436,20 @@ async function loadTours() {
   try {
     // Try to fetch from API, fallback to sample data
     try {
+      console.log('Fetching tours from:', `${API_BASE}/tours`);
       const response = await fetch(`${API_BASE}/tours`);
+      console.log('Tours response status:', response.status);
       if (response.ok) {
         const data = await response.json();
+        console.log('Tours API data:', data);
         tours = data.data || data;
+        console.log('Tours loaded from API:', tours.length);
       } else {
+        console.log('Tours API error:', response.status);
         tours = SAMPLE_TOURS;
       }
     } catch (err) {
-      console.log('Using sample tour data');
+      console.error('Error fetching tours:', err);
       tours = SAMPLE_TOURS;
     }
     renderTours();
@@ -460,18 +465,30 @@ async function loadGuides() {
   try {
     // Try to fetch from API, fallback to sample data
     try {
+      console.log('Fetching users from:', `${API_BASE}/users`);
       const response = await fetch(`${API_BASE}/users`);
+      console.log('Users response status:', response.status);
       if (response.ok) {
         const data = await response.json();
-        guides = data.data || data;
-        guides = guides.filter(
+        console.log('Users API data:', data);
+        const allUsers = data.data || data;
+        console.log('All users:', allUsers);
+        guides = allUsers.filter(
           (user) => user.role === 'guide' || user.role === 'lead-guide',
         );
+        console.log('Filtered guides:', guides.length);
+        if (guides.length === 0) {
+          console.log(
+            'No guides found with guide/lead-guide role, using all users',
+          );
+          guides = allUsers || SAMPLE_GUIDES;
+        }
       } else {
+        console.log('Users API error:', response.status);
         guides = SAMPLE_GUIDES;
       }
     } catch (err) {
-      console.log('Using sample guides data');
+      console.error('Error fetching users:', err);
       guides = SAMPLE_GUIDES;
     }
     renderGuides();
