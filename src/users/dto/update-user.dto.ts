@@ -1,4 +1,10 @@
-import { IsEmail, IsString, IsEnum, IsOptional } from 'class-validator';
+import {
+  IsEmail,
+  IsString,
+  IsEnum,
+  IsOptional,
+  IsBoolean,
+} from 'class-validator';
 
 export class UpdateUserDto {
   @IsOptional()
@@ -24,4 +30,8 @@ export class UpdateUserDto {
   @IsOptional()
   @IsString()
   photo?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  active?: boolean;
 }

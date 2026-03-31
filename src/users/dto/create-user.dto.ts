@@ -5,6 +5,7 @@ import {
   IsNotEmpty,
   IsEnum,
   IsOptional,
+  IsBoolean,
   ValidateBy,
 } from 'class-validator';
 
@@ -34,4 +35,8 @@ export class CreateUserDto {
   @IsString()
   @IsOptional()
   photo?: string;
+
+  @IsBoolean()
+  @IsOptional()
+  active?: boolean;
 }
