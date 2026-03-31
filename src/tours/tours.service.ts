@@ -8,7 +8,12 @@ export class ToursService {
   constructor(@InjectModel(Tour.name) private tourModel: Model<TourDocument>) {}
 
   async findAll() {
-    return this.tourModel.find();
+    const tours = await this.tourModel.find().populate('guides');
+    return {
+      status: 'success',
+      results: tours.length,
+      data: tours,
+    };
   }
 
   async findById(id: string) {
