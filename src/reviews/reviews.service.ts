@@ -32,4 +32,41 @@ export class ReviewsService {
       data: review,
     };
   }
+
+  async create(createReviewDto: CreateReviewDto) {
+    const createdReview = new this.reviewModel(createReviewDto);
+    return createdReview.save();
+  }
+
+  async update(id: string, updateReviewDto: UpdateReviewDto) {
+    const updatedReview = await this.reviewModel.findByIdAndUpdate(
+      id,
+      updateReviewDto,
+      { new: true },
+    );
+    if (!updatedReview) {
+      return {
+        status: 'fail',
+        message: 'No review found with that ID',
+      };
+    }
+    return {
+      status: 'success',
+      data: updatedReview,
+    };
+  }
+
+  async remove(id: string) {
+    const deletedReview = await this.reviewModel.findByIdAndDelete(id);
+    if (!deletedReview) {
+      return {
+        status: 'fail',
+        message: 'No review found with that ID',
+      };
+    }
+    return {
+      status: 'success',
+      data: deletedReview,
+    };
+  }
 }

@@ -21,18 +21,18 @@ export class UsersController {
     private authService: AuthService,
   ) {}
 
+  @Public()
   @Get()
   async findAll() {
     const users = await this.usersService.findAll();
     return {
       status: 'success',
       results: users.length,
-      data: {
-        users,
-      },
+      data: users,
     };
   }
 
+  @Public()
   @Get(':id')
   async findById(@Param('id') id: string) {
     const user = await this.usersService.findById(id);
