@@ -12,7 +12,7 @@ export class ToursService {
   }
 
   async findById(id: string) {
-    const tour = await this.tourModel.findById(id);
+    const tour = await this.tourModel.findById(id).populate('guides');
     if (!tour) {
       throw new NotFoundException(`Cannot found a tour with this id: ${id}`);
     }
