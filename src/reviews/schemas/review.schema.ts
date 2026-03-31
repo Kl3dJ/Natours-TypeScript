@@ -8,7 +8,7 @@ export class Review {
   @Prop({ required: true, min: 1, max: 5 })
   rating: number;
 
-  @Prop({ default: Date.now() })
+  @Prop({ default: () => new Date() })
   createdAt: Date;
 
   @Prop({ required: true, ref: 'Tour' })
