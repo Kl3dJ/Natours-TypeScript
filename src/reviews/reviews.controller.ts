@@ -27,4 +27,22 @@ export class ReviewsController {
   async findOne(@Param('id') id: string) {
     return this.reviewsService.findOne(id);
   }
+
+  @Post()
+  async create(@Body() createReviewDto: CreateReviewDto) {
+    return this.reviewsService.create(createReviewDto);
+  }
+
+  @Patch(':id')
+  async update(
+    @Param('id') id: string,
+    @Body() updateReviewDto: UpdateReviewDto,
+  ) {
+    return this.reviewsService.update(id, updateReviewDto);
+  }
+
+  @Delete(':id')
+  async remove(@Param('id') id: string) {
+    return this.reviewsService.remove(id);
+  }
 }
