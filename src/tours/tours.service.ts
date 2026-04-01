@@ -9,11 +9,7 @@ export class ToursService {
 
   async findAll() {
     const tours = await this.tourModel.find().populate('guides');
-    return {
-      status: 'success',
-      results: tours.length,
-      data: tours,
-    };
+    return tours;
   }
 
   async findById(id: string) {
